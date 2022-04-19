@@ -52,6 +52,7 @@ public class S3Sink extends AbstractSink implements Configurable, BatchSizeSuppo
   private int maxOpenFiles;
   private int rollTimerPoolSize;
   private int fileBufferSize; //in bytes
+  private String vpcEndpointId;
   private ExecutorService timedRollerPool;
   private String accessKey;
   private String secretKey;
@@ -90,12 +91,13 @@ public class S3Sink extends AbstractSink implements Configurable, BatchSizeSuppo
       defaultFileBufferSize);
 
     batchSize = context.getInteger("s3.batchSize", defaultBatchSize);
+    vpcEndpointId = context.getString("s3.vpcEndpoint");
 
     if (sinkCounter == null) {
       sinkCounter = new SinkCounter(getName());
     }
 
-    awss3Writer = new AWSS3Writer(awsRegion, new BasicAWSCredentials(accessKey, secretKey));
+    awss3Writer = new AWSS3Writer(awsRegion, new BasicAWSCredentials(accessKey, secretKey), vpcEndpointId);
     logger.debug("Configured codeC : {}", codeC);
     fileCompressor = CompressorFactory.getInstance(codeC);
     fileNameIdentifier = new FileNameIdentifier();
