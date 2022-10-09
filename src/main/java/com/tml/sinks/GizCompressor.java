@@ -6,11 +6,11 @@ import org.slf4j.LoggerFactory;
 import java.io.*;
 import java.util.zip.GZIPOutputStream;
 
-class GizCompressor implements FileCompressor {
+class GzipCompressor implements FileCompressor {
 
-  private static final Logger logger = LoggerFactory.getLogger(GizCompressor.class);
+  private static final Logger logger = LoggerFactory.getLogger(GzipCompressor.class);
 
-  GizCompressor() {
+  GzipCompressor() {
     logger.info("Configured GizCompressor..");
   }
 

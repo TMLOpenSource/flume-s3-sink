@@ -11,7 +11,7 @@ final class CompressorFactory {
       return new NullCompressor();
     }
     if(StringUtils.endsWithIgnoreCase(codeC, "gz")) {
-      return new GizCompressor();
+      return new GzipCompressor();
     }
     return new NullCompressor();
   }
