@@ -54,3 +54,30 @@ public class WriterLinkedHashMap extends LinkedHashMap<String, BufferedOutputStr
     }
   }
 }
+
+//write junit test for this class
+class WriterLinkedHashMapTest {
+  @Test
+  void test() {
+    WriterLinkedHashMap map = new WriterLinkedHashMap(2);
+    map.put("a", new BufferedOutputStream(new OutputStream() {
+      @Override
+      public void write(int b) throws IOException {
+      }
+    }));
+    map.put("b", new BufferedOutputStream(new OutputStream() {
+      @Override
+      public void write(int b) throws IOException {
+      }
+    }));
+    map.put("c", new BufferedOutputStream(new OutputStream() {
+      @Override
+      public void write(int b) throws IOException {
+      }
+    }));
+    assertEquals(2, map.size());
+    assertFalse(map.containsKey("a"));
+    assertTrue(map.containsKey("b"));
+    assertTrue(map.containsKey("c"));
+  }
+}
